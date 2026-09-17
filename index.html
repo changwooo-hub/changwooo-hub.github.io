@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김창우 — Backend Developer Portfolio</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1220;
+    --surface:#121B2E;
+    --surface-2:#0E1626;
+    --border:#22314A;
+    --border-soft:#1A2740;
+    --text:#E7ECF3;
+    --text-soft:#8FA3C0;
+    --text-faint:#5B6C87;
+    --signal:#4CD9B0;
+    --signal-dim:#1F4D42;
+    --amber:#F2A93B;
+    --amber-dim:#4A3A19;
+    --maxw:820px;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#0B1220; --surface:#121B2E; --surface-2:#0E1626; --border:#22314A;
+      --border-soft:#1A2740; --text:#E7ECF3; --text-soft:#8FA3C0; --text-faint:#5B6C87;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans KR', -apple-system, sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--signal-dim); color:var(--signal); }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  /* ---- nav ---- */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(11,18,32,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:56px;
+  }
+  nav .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:var(--signal); letter-spacing:0.02em;
+  }
+  nav ul{ list-style:none; display:flex; gap:22px; margin:0; padding:0; }
+  nav a{
+    color:var(--text-soft); text-decoration:none; font-size:14px;
+    transition:color .15s ease;
+  }
+  nav a:hover{ color:var(--text); }
+  nav .menu-btn{ display:none; }
+
+  @media (max-width:640px){
+    nav ul{ display:none; }
+  }
+
+  /* ---- hero ---- */
+  header.hero{ padding:96px 0 64px; }
+  .pulse-row{
+    display:flex; align-items:center; gap:10px; margin-bottom:28px;
+  }
+  .pulse-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--signal);
+    animation:blink 2s ease-in-out infinite;
+  }
+  @keyframes blink{
+    0%,100%{ opacity:1; box-shadow:0 0 0 0 rgba(76,217,176,0.5); }
+    50%{ opacity:0.6; box-shadow:0 0 0 6px rgba(76,217,176,0); }
+  }
+  .pulse-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-faint);
+    letter-spacing:0.03em;
+  }
+  h1.name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:clamp(36px, 6vw, 56px);
+    line-height:1.15;
+    margin:0 0 14px;
+    color:var(--text);
+  }
+  .role-line{
+    font-size:18px; color:var(--text-soft); margin:0 0 28px; max-width:560px;
+  }
+  .role-line strong{ color:var(--signal); font-weight:600; }
+
+  .hero-signal{
+    margin:32px 0 8px;
+    height:64px;
+    width:100%;
+  }
+  .hero-signal svg{ width:100%; height:100%; display:block; }
+  .signal-path{
+    stroke:var(--signal);
+    stroke-width:1.6;
+    fill:none;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:600;
+    stroke-dashoffset:600;
+    animation:draw 2.4s ease-out forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:18px; margin-top:20px;
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+  }
+  .contact-row a{ color:var(--text-soft); text-decoration:none; border-bottom:1px solid var(--border); padding-bottom:2px; }
+  .contact-row a:hover{ color:var(--signal); border-color:var(--signal); }
+
+  /* ---- sections ---- */
+  section{ padding:52px 0; border-top:1px solid var(--border-soft); }
+  section.first{ border-top:none; padding-top:0; }
+  h2.sec-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600; font-size:22px; margin:0 0 6px;
+    display:flex; align-items:baseline; gap:10px;
+  }
+  h2.sec-title .idx{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--text-faint); font-weight:400;
+  }
+  p.lead{ color:var(--text-soft); max-width:640px; margin:0 0 28px; }
+
+  /* profile */
+  .profile-text{ max-width:660px; color:var(--text-soft); font-size:16px; }
+  .profile-text strong{ color:var(--text); font-weight:600; }
+
+  /* skills */
+  .skill-grid{
+    display:grid; grid-template-columns:140px 1fr; gap:12px 20px;
+  }
+  .skill-grid dt{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--signal);
+    padding-top:2px;
+  }
+  .skill-grid dd{ margin:0; color:var(--text-soft); font-size:14.5px; }
+  @media (max-width:560px){
+    .skill-grid{ grid-template-columns:1fr; }
+    .skill-grid dt{ padding-top:10px; border-top:1px solid var(--border-soft); }
+    .skill-grid dt:first-of-type{ border-top:none; padding-top:0; }
+  }
+
+  /* projects */
+  .project{
+    padding:26px 24px;
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    margin-bottom:20px;
+  }
+  .project-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:16px; margin-bottom:6px; flex-wrap:wrap;
+  }
+  .project-title{
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:19px; margin:0;
+  }
+  .project-period{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-faint);
+    white-space:nowrap; padding-top:4px;
+  }
+  .project-meta{
+    font-size:13px; color:var(--text-faint); margin:0 0 14px;
+  }
+  .project-desc{ color:var(--text-soft); font-size:15px; margin:0 0 16px; }
+  .project h4{
+    font-size:12.5px; text-transform:none; color:var(--amber);
+    font-family:'IBM Plex Mono', monospace; margin:16px 0 8px; letter-spacing:0.01em;
+  }
+  .project ul{ margin:0 0 4px; padding-left:20px; }
+  .project li{ color:var(--text-soft); font-size:14.5px; margin-bottom:8px; }
+  .project li::marker{ color:var(--signal); }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    color:var(--text-soft); background:var(--surface-2);
+    border:1px solid var(--border); padding:4px 9px; border-radius:5px;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--amber); background:var(--amber-dim);
+    border:1px solid #6b551f; padding:5px 10px; border-radius:5px;
+    margin-top:14px;
+  }
+
+  /* awards / education */
+  .plain-list{ list-style:none; margin:0; padding:0; }
+  .plain-list li{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:14px 0; border-bottom:1px solid var(--border-soft);
+    font-size:15px;
+  }
+  .plain-list li:last-child{ border-bottom:none; }
+  .plain-list .item-title{ color:var(--text); }
+  .plain-list .item-title span{ display:block; color:var(--text-soft); font-size:13px; margin-top:3px; }
+  .plain-list .item-date{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--text-faint);
+    white-space:nowrap; padding-top:2px;
+  }
+
+  footer{
+    padding:40px 0 60px; border-top:1px solid var(--border-soft);
+    color:var(--text-faint); font-size:13px;
+  }
+  footer a{ color:var(--text-soft); }
+
+  @media (max-width:640px){
+    header.hero{ padding:64px 0 40px; }
+    section{ padding:40px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">changwoo@backend</div>
+    <ul>
+      <li><a href="#profile">프로필</a></li>
+      <li><a href="#skills">기술</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#awards">수상/자격</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="pulse-row">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <span class="pulse-label">SIGNAL: ONLINE</span>
+    </div>
+    <h1 class="name">김창우</h1>
+    <p class="role-line">
+      Spring Boot 기반 백엔드 개발자. 실시간 러닝 플랫폼 <strong>RunRun</strong>에서
+      WebSocket과 Redis Pub/Sub으로 채팅·온라인 대결·GPS 트래킹을 하나의 실시간 신호로
+      묶어내는 작업을 했습니다.
+    </p>
+
+    <div class="hero-signal" aria-hidden="true">
+      <svg viewBox="0 0 800 64" preserveAspectRatio="none">
+        <path class="signal-path" d="M0,32 L120,32 L140,10 L160,54 L180,32 L260,32 L280,18 L300,46 L320,32 L420,32 L440,4 L460,60 L480,32 L560,32 L580,20 L600,44 L620,32 L800,32" />
+      </svg>
+    </div>
+
+    <div class="contact-row">
+      <a href="mailto:changwooo2000@naver.com">changwooo2000@naver.com</a>
+      <a href="tel:010-2582-8942">010-2582-8942</a>
+      <a href="https://github.com/changwooo-hub" target="_blank" rel="noopener">github.com/changwooo-hub</a>
+    </div>
+  </header>
+
+  <section id="profile" class="first">
+    <h2 class="sec-title"><span class="idx">01</span> 프로필</h2>
+    <p class="profile-text">
+      실시간 러닝 플랫폼 <strong>RunRun</strong> 프로젝트에서 채팅, 온라인 대결, 고스트 러닝 등
+      실시간 기능 전반을 설계·개발했습니다. WebSocket과 Redis Pub/Sub을 활용한 다중 서버
+      실시간 통신 아키텍처를 구현했고, 데이터 특성에 맞춰 PostgreSQL·MongoDB·Redis를 나누어
+      쓰는 폴리글랏 퍼시스턴스 구조를 설계했습니다. 완주 중복 기록 버그처럼 여러 경로가 얽힌
+      문제를 구조적으로 파악해 해결한 경험을 바탕으로, 개별 기능을 넘어 시스템 전체를
+      통합적으로 이해하고 다루는 데 강점이 있습니다.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2 class="sec-title"><span class="idx">02</span> 기술 스택</h2>
+    <dl class="skill-grid">
+      <dt>Language</dt><dd>Java</dd>
+      <dt>Framework</dt><dd>Spring Boot, Spring Security, JPA / Hibernate</dd>
+      <dt>Database</dt><dd>PostgreSQL, MongoDB, Redis</dd>
+      <dt>Real-time</dt><dd>WebSocket (STOMP), Redis Pub/Sub</dd>
+      <dt>Infra / DevOps</dt><dd>AWS, Docker, Kubernetes, Jenkins, Terraform, CI/CD</dd>
+      <dt>Frontend</dt><dd>React 18, TypeScript, Tailwind CSS</dd>
+      <dt>Tool</dt><dd>Git / GitHub, Postman, CodeRabbit</dd>
+    </dl>
+  </section>
+
+  <section id="projects">
+    <h2 class="sec-title"><span class="idx">03</span> 프로젝트</h2>
+    <p class="lead">부트캠프 및 해커톤에서 진행한 3개 프로젝트입니다.</p>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">RunRun — 웹소켓 기반 실시간 러닝 플랫폼</h3>
+        <span class="project-period">2025.12 – 2026.01</span>
+      </div>
+      <p class="project-meta">멀티캠퍼스 백엔드 부트캠프 최종 프로젝트 · 5인 팀 · 담당: 채팅, 온라인 대결, 고스트 모드</p>
+      <p class="project-desc">
+        오프라인 러닝(모집 기반 그룹 매칭), 온라인 대결, 고스트 러닝, 개인 트래킹, 실시간 채팅까지
+        지원하는 종합 소셜 러닝 플랫폼. 관계형 데이터는 PostgreSQL, 채팅 메시지는 MongoDB,
+        실시간 캐싱·Pub/Sub은 Redis로 나누는 폴리글랏 퍼시스턴스 구조로 설계했습니다.
+      </p>
+
+      <h4>주요 구현</h4>
+      <ul>
+        <li>WebSocket(STOMP)으로 실시간 메시지 송수신을 구현하고, Redis Pub/Sub을 메시지 브로커로 활용해 다중 서버 환경에서도 모든 사용자에게 채팅이 동기화되도록 설계</li>
+        <li>실시간 GPS 트래킹 기반 온라인 대결 모드 — Haversine 공식으로 이동 거리를 계산하고 Redis ZSet으로 실시간 랭킹 관리, 참가자 타임아웃 자동 처리</li>
+        <li>과거 기록과 현재 러닝을 비교하는 고스트 모드 — 선형 보간(linear interpolation)으로 페이스 비교 로직 구현</li>
+        <li>채팅·랭킹·GPS 데이터를 하나의 채널 패턴 기반 Redis Pub/Sub 브로커로 통합해, 서버가 늘어나도 설정 변경 없이 확장 가능한 구조 설계</li>
+      </ul>
+
+      <h4>트러블슈팅</h4>
+      <ul>
+        <li>완주 처리가 특정 조건에서 중복 기록되는 버그를 발견 — GPS 신호 수신, 사용자 확인, 시간 초과 처리가 동시에 완주 처리를 실행할 수 있는 구조적 결함임을 파악해 처리 순서를 재설계하고 재현 테스트로 검증</li>
+      </ul>
+
+      <div class="tag-row">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Security</span>
+        <span class="tag">JWT</span><span class="tag">WebSocket / STOMP</span><span class="tag">Redis</span>
+        <span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span>
+        <span class="tag">Jenkins</span><span class="tag">Terraform</span>
+      </div>
+      <div class="badge">🏆 파이널 프로젝트 경진대회 최우수상 · 2026.01.19</div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">다짜고짜 — 국내 여행계획서비스</h3>
+        <span class="project-period">2025.10 – 2025.11</span>
+      </div>
+      <p class="project-meta">멀티캠퍼스 백엔드 부트캠프 팀 프로젝트 · 4인 팀 · 담당: 사용자 인증, 관리자 데이터 관리</p>
+      <p class="project-desc">
+        한국관광공사 공공 API 기반 관광지(12,900개)·숙소(3,500개) 데이터를 통합하고, AI가 자동으로
+        여행 코스를 추천하는 서비스입니다.
+      </p>
+
+      <h4>주요 구현</h4>
+      <ul>
+        <li>HS512로 서명한 JWT를 Access Token(3시간) / Refresh Token(1일) 이중 구조로 발급, OncePerRequestFilter 기반 JwtFilter로 헤더·쿠키에서 토큰을 추출·검증</li>
+        <li>Refresh Token은 DB에 저장해 재사용/재발급을 관리하고, 로그아웃 시 삭제해 세션 무효화. 토큰 검증 실패 유형을 커스텀 예외로 구분해 401 응답 처리</li>
+        <li>HTTP 메서드별로 세분화한 역할 기반 접근 제어(RBAC) — 조회는 비로그인도 가능, 생성·수정·삭제는 USER/ADMIN 권한 필요, 관리자 기능은 ADMIN 전용</li>
+        <li>관리자 대시보드에서 회원·관광지·숙소 데이터 CRUD, 관광지 삭제는 소프트 삭제 방식으로 데이터 유실 방지</li>
+      </ul>
+
+      <div class="tag-row">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Security</span>
+        <span class="tag">JWT</span><span class="tag">JPA / Hibernate</span><span class="tag">BCrypt</span>
+        <span class="tag">공공 API</span><span class="tag">카카오맵 API</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3 class="project-title">Career AI — 세종대 특화 AI 이력서 분석 서비스</h3>
+        <span class="project-period">2025.06</span>
+      </div>
+      <p class="project-meta">세종대학교 24시간 해커톤 팀 프로젝트 · 담당: 프런트엔드</p>
+      <p class="project-desc">
+        세종대학교 졸업생들의 실제 취업 데이터를 기반으로 이력서를 분석하고, 기업별 합격률을
+        예측해주는 AI 서비스입니다.
+      </p>
+
+      <h4>주요 구현</h4>
+      <ul>
+        <li>개인정보 → 경력 → 학력 → 스킬 → 자기소개 순 5단계 이력서 작성 마법사(StepByStepResumeBuilder) 구현, 진행률 표시와 실시간 미리보기 제공</li>
+        <li>이력서 파일 업로드(PDF/DOCX) 분석과 직접 작성 분석, 두 플로우를 모두 지원</li>
+        <li>섹션별 점수·강점·약점과 합격률 순 기업 추천을 보여주는 분석 결과 페이지, PDF 다운로드 기능 구현</li>
+        <li>useApi, useResumeData, useStepNavigation 등 커스텀 훅으로 상태 관리를 분리해 컴포넌트 재사용성 향상</li>
+      </ul>
+
+      <h4>트러블슈팅</h4>
+      <ul>
+        <li>React를 처음 다루는 환경에서 컴포넌트·상태 관리 방식이 낯설어 초반 진도가 더뎠으나, AI 도구로 빠르게 학습하며 24시간 내 핵심 플로우 완성에 집중</li>
+      </ul>
+
+      <div class="tag-row">
+        <span class="tag">React 18</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span>
+        <span class="tag">Shadcn/ui</span><span class="tag">Custom Hooks</span>
+      </div>
+      <div class="badge">🏆 SW/AI 해커톤 장려상 · 2025.06.25</div>
+    </div>
+  </section>
+
+  <section id="awards">
+    <h2 class="sec-title"><span class="idx">04</span> 수상 및 자격증</h2>
+    <ul class="plain-list">
+      <li>
+        <div class="item-title">파이널 프로젝트 경진대회 최우수상<span>멀티캠퍼스 · RunRun 프로젝트</span></div>
+        <div class="item-date">2026.01.19</div>
+      </li>
+      <li>
+        <div class="item-title">SW/AI 해커톤 장려상<span>세종대학교 · Career AI 프로젝트</span></div>
+        <div class="item-date">2025.06.25</div>
+      </li>
+      <li>
+        <div class="item-title">정보처리기사<span>한국산업인력공단</span></div>
+        <div class="item-date">2025.12</div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="education">
+    <h2 class="sec-title"><span class="idx">05</span> 학력 및 기타</h2>
+    <ul class="plain-list">
+      <li>
+        <div class="item-title">세종대학교 컴퓨터공학과<span>학사 졸업 · 학점 3.4 / 4.5</span></div>
+        <div class="item-date">2020.03 – 2026.08</div>
+      </li>
+      <li>
+        <div class="item-title">멀티캠퍼스 백엔드 개발자 부트캠프<span>Java · Spring Boot · DB · Servlet/JSP · MVC · 자료구조·알고리즘 · AWS/Docker/Kubernetes CI/CD</span></div>
+        <div class="item-date">2025.08 – 2026.01 (800h)</div>
+      </li>
+      <li>
+        <div class="item-title">TOEIC Speaking<span>Intermediate High</span></div>
+        <div class="item-date">2026.04</div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>© 2026 Kim Changwoo. Built with Spring Boot &amp; a running habit.</div>
+  </footer>
+</div>
+
+</body>
+</html>
